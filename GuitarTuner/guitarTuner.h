@@ -2,12 +2,12 @@
 #define STATE_FUNCTIONS
 
 /* Definir corda a ser analisada */
-void selectString() {}
+void selectString();
 
 /* Definir modo de operação: afinação ou aprendizado */
-void selectMode() {}
+void selectMode();
 
 /* Acionamento do motor */
-void servoSetting() {}
+void servoSetting();
 
 #endif
