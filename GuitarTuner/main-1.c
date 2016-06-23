@@ -20,3 +20,15 @@ typedef struct FiniteStateMachine {
     learnStates LS;
     Action action[8];
 } FSM;
+
+int main(int argc, char const *argv[]) {
+    // Supondo selectMode() = afinação:
+
+    /* Leitura/conversão do sinal analógico em digital */
+    inputWave();
+
+    /* Com base na representação digital do sinal obtida anteriormente, faz-se a FFT */
+    defineFrequency();
+
+    return 0;
+}
