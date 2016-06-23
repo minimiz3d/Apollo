@@ -1,7 +1,7 @@
 #include <avr/io.h>
 
 /* ADC config. */
-void ADCconfig() {
+void ADCconfig(void) {
     /* AVcc = AVref */
     ADMUX |= (1 << REFS0);
 
@@ -33,10 +33,4 @@ uint16_t ADCconversion(uint8_t channelNum) {
     ADCresult = (ADCH << 8) + ADCresult;
 
     return ADCresult;
-}
-
-int main () {
-    while (1);
-
-    return 0;
 }
