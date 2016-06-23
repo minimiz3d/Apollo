@@ -21,8 +21,7 @@ uint16_t ADCconversion(uint8_t channelNum) {
 
     /* Como são 8 canais possíveis, então o num_canal deve ser algum entre 0~7 */
     channelNum &= 0x7;
-    ADMUX |= channelNum;''
-
+    ADMUX |= channelNum;
     /* Inicia conversão */
     ADCSRA |= (1 << ADSC);
 
