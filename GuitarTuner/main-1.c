@@ -27,7 +27,7 @@ int main(int argc, char const *argv[]) {
     /* Leitura/conversão do sinal analógico em digital */
     inputWave();
 
-    /* Com base na representação digital do sinal obtida anteriormente, faz-se a FFT */
+    /* Com base na representação digital do sinal obtido anteriormente, faz-se a FFT */
     defineFrequency();
 
     return 0;
