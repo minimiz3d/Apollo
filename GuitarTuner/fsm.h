@@ -1,6 +1,29 @@
 #ifndef FSM_H_
 #define FSM_H_
 
+/* Tuning states*/
+typedef enum {
+    ST_1, ST_2, ST_3, ST_4, ST_5, ST_6
+} tuneStates;
+
+/* Learning states */
+typedef enum {
+    SL_1, SL_2, SL_3, SL_4, SL_5, SL_6
+} learnStates;
+
+/* Ponteiro de função para um determinado estado */
+typedef void (*Action)(); 
+
+/* Dados e ponteiros de funções */
+typedef struct TuningFSM {
+    learnStates LS;
+    Action action[8];
+} lfsm;
+typedef struct LearningFSM {
+    tuneStates TS;
+    Action action[8];
+} tfsm;
+
 /* Inicialização das FSMs */
 void initTuneFSM();
 void initLearnFSM();
