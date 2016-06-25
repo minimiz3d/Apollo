@@ -17,7 +17,7 @@ void actMotor() {}
 
 /* Função genérica de afinamento */
 void tuneString() {
-    currentFrequency = detectFrequencty(); // Atualizar essa variável com a frequência desafinada da corda em questão.
+    currentFrequency = detectFrequency(); // Atualizar essa variável com a frequência desafinada da corda em questão.
 
     while (currentFrequency != string[i].frequency) {
         actMotor(); // Ainda não sei o quanto é pra girar e tal
@@ -25,4 +25,12 @@ void tuneString() {
     }
 
     stringInTune = true;    // Avança na FSM.
+}
+
+/* Inicialização do objeto String com suas respectivas frequências padrão de afinação */
+void defineStrings() {
+    for (int i = 0; i < 6; i++) {
+        string[i].stringName = stringNames[i];
+        string[i].tunedFrequency = frequencyTable[i];
+    }
 }
