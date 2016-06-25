@@ -1,17 +1,25 @@
 #include <avr/io.h>
 #include "fsm.h"
+#include "guitarTuner.h"
 
-int main()
-{
-        // Supondo selectMode() = afinação:
+int main() {
+    while(1) {
+        STRING string[6];       // 6 cordas para afinar.
 
-    /* Leitura/conversão do sinal analógico em digital */
-    inputWave();
+        mode = selectMode();    // Selecionar modo: afinação ou aprendizado.
 
-    /* Com base na representação digital do sinal obtido anteriormente, faz-se a FFT */
-    defineFrequency();
-    while(1)
-    {
-        // Do something
+        if (!mode) {            // Afinação.
+            tfsm fsm;
+            initTuneFSM(fsm);
+            fsm.TS = ST_1;
+            fsm.action[fsm.TS]();
+        } else {                // Aprendizado.
+            lfsm fsm;
+            initLearnFSM(fsm);
+            fsm.LS = SL_1;
+            fsm.action[fsm.LS]();
+        }
     }
+
+    return 0;
 }
