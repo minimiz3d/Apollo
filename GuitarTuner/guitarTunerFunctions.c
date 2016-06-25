@@ -13,15 +13,15 @@ uint8_t readPORTB() {
 }
 
 /* Acionamento do motor */
-void servoSetting() {}
+void actMotor() {}
 
 /* Função genérica de afinamento */
 void tuneString() {
     currentFrequency = detectFrequencty(); // Atualizar essa variável com a frequência desafinada da corda em questão.
 
     while (currentFrequency != string[i].frequency) {
-        servoSetting(); // Ainda não sei o quanto é pra girar e tal
-        // Dentro da função servoSetting a gente vai atualizando a "currentFrequency".
+        actMotor(); // Ainda não sei o quanto é pra girar e tal
+        // Dentro da função actMotor a gente vai atualizando a "currentFrequency".
     }
 
     stringInTune = true;    // Avança na FSM.
