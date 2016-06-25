@@ -21,8 +21,8 @@ typedef void (*Action)(unsigned char algo); //...
 typedef struct FiniteStateMachine {
     tuneStates TS;
     learnStates LS;
-    Action action[8];
-} FSM;
+    Action action[16];
+} fsm;
 
 /* Atributos de cada corda */
 typedef struct String {
@@ -30,22 +30,75 @@ typedef struct String {
     uint8_t tunedFrequency;
 } STRING;
 
+void initTuneFSM() {
+    fsm.action[ST_1] = st1;
+    fsm.action[ST_2] = st2;
+    fsm.action[ST_3] = st3;
+    fsm.action[ST_4] = st4;
+    fsm.action[ST_5] = st5;
+    fsm.action[ST_6] = st6;
+    fsm.action[ST_7] = st7;
+    fsm.action[ST_8] = st8;
+}
+void initLearnFSM() {
+    fsm.action[SL_1] = sl1;
+    fsm.action[SL_2] = sl2;
+    fsm.action[SL_3] = sl3;
+    fsm.action[SL_4] = sl4;
+    fsm.action[SL_5] = sl5;
+    fsm.action[SL_6] = sl6;
+    fsm.action[SL_7] = sl7;
+    fsm.action[SL_8] = sl8;
+}
+
 /* Funções de estados de afinação */
-void st1();
-void st2();
-void st3();
-void st4();
-void st5();
-void st6();
-void st7();
-void st8();
+void st1() {
+    fsm.TS = ST_2;  // Avança na FSM.
+}
+void st2() {
+    fsm.TS = ST_3;  // Avança na FSM.
+}
+void st3() {
+    fsm.TS = ST_4;  // Avança na FSM.
+}
+void st4() {
+    fsm.TS = ST_5;  // Avança na FSM.
+}
+void st5() {
+    fsm.TS = ST_6;  // Avança na FSM.
+}
+void st6() {
+    fsm.TS = ST_7;  // Avança na FSM.
+}
+void st7() {
+    fsm.TS = ST_8;  // Avança na FSM.
+}
+void st8() {
+    fsm.TS = S0;  // Avança na FSM.
+}
 
 /* Funções de estados de aprendizado */
-void stL1();
-void stL2();
-void stL3();
-void stL4();
-void stL5();
-void stL6();
-void stL7();
-void stL8();
+void sl1() {
+    fsm.LS = SL_2;  // Avança na FSM.
+}
+void sl2() {
+    fsm.LS = SL_3;  // Avança na FSM.
+}
+void sl3() {
+    fsm.LS = SL_4;  // Avança na FSM.
+}
+void sl4() {
+    fsm.LS = SL_5;  // Avança na FSM.
+}
+void sl5() {
+    fsm.LS = SL_6;  // Avança na FSM.
+}
+void sl6() {
+    fsm.LS = SL_7;  // Avança na FSM.
+}
+void sl7() {
+    fsm.LS = SL_8;  // Avança na FSM.
+}
+void sl8() {
+    fsm.LS = S0;  // Avança na FSM.
+}
