@@ -4,32 +4,7 @@
  * This file defines a finite state machine for the tuner
  */
 
-/* Tuning states*/
-typedef enum {
-    ST_INIT, ST_1, ST_2, ST_3, ST_4, ST_5, ST_6;
-} tuneStates;
-
-/* Learning states */
-typedef enum {
-    SL_INIT, SL_1, SL_2, SL_3, SL_4, SL_5, SL_6;
-} learnStates;
-
-/* Ponteiro de função para um determinado estado */
-typedef void (*Action)(unsigned char algo); //...
-
-/* Dados e ponteiros de funções */
-typedef struct FiniteStateMachine {
-    tuneStates TS;
-    learnStates LS;
-    Action action[16];
-} fsm;
-
-/* Atributos de cada corda */
-typedef struct String {
-    char stringName;
-    uint8_t tunedFrequency;
-} STRING;
-
+/* Inicialização das FSMs */
 void initTuneFSM() {
     fsm.action[ST_1] = st1;
     fsm.action[ST_2] = st2;
@@ -79,26 +54,34 @@ void st8() {
 
 /* Funções de estados de aprendizado */
 void sl1() {
+    string[i].tunedFrequency = detectFrequency();
     fsm.LS = SL_2;  // Avança na FSM.
 }
 void sl2() {
+    string[i].tunedFrequency = detectFrequency();
     fsm.LS = SL_3;  // Avança na FSM.
 }
 void sl3() {
+    string[i].tunedFrequency = detectFrequency();
     fsm.LS = SL_4;  // Avança na FSM.
 }
 void sl4() {
+    string[i].tunedFrequency = detectFrequency();
     fsm.LS = SL_5;  // Avança na FSM.
 }
 void sl5() {
+    string[i].tunedFrequency = detectFrequency();
     fsm.LS = SL_6;  // Avança na FSM.
 }
 void sl6() {
+    string[i].tunedFrequency = detectFrequency();
     fsm.LS = SL_7;  // Avança na FSM.
 }
 void sl7() {
+    string[i].tunedFrequency = detectFrequency();
     fsm.LS = SL_8;  // Avança na FSM.
 }
 void sl8() {
+    string[i].tunedFrequency = detectFrequency();
     fsm.LS = S0;  // Avança na FSM.
 }
