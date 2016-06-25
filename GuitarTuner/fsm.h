@@ -1,6 +1,10 @@
 #ifndef FSM_H_
 #define FSM_H_
 
+/* Inicialização das FSMs */
+void initTuneFSM();
+void initLearnFSM();
+
 /* Funções de estados de afinação */
 void st1();
 void st2();
