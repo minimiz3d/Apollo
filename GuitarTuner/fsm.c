@@ -3,7 +3,7 @@
  *
  * This file defines a finite state machine for the tuner
  */
- 
+
 /* Tuning states*/
 typedef enum {
     ST_INIT, ST_1, ST_2, ST_3, ST_4, ST_5, ST_6;
@@ -23,3 +23,9 @@ typedef struct FiniteStateMachine {
     learnStates LS;
     Action action[8];
 } FSM;
+
+/* Atributos de cada corda */
+typedef struct String {
+    char stringName;
+    uint8_t tunedFrequency;
+} STRING;
