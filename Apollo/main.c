@@ -3,23 +3,26 @@
 #include "guitarTuner.h"
 
 int main() {
-    while(1) {
-        STRING string[6];       // 6 cordas para afinar.
+	STRING string[6];           // 6 cordas para afinar.
 
-        mode = selectMode();    // Selecionar modo: afinação ou aprendizado.
+	uint8_t mode = selectMode();        // Selecionar modo: afinação ou aprendizado.
 
-        if (!mode) {            // Afinação.
-            tfsm fsm;
-            initTuneFSM(fsm);
-            fsm.TS = ST_1;
-            fsm.action[fsm.TS]();
-        } else {                // Aprendizado.
-            lfsm fsm;
-            initLearnFSM(fsm);
-            fsm.LS = SL_1;
-            fsm.action[fsm.LS]();
-        }
-    }
+	if (!mode) {                // Afinação.
+		tfsm fsm;
+		initTuneFSM(fsm);       // Inicializa os estados com suas respectivas funções.
+		fsm.TS = ST_1;          // Estado inicial da FSM.
+		fsm.action[fsm.TS]();   // Inicia afinação.
+	}
 
-    return 0;
+	else {                      // Aprendizado.
+		lfsm fsm;               // Inicia aprendizado.
+		initLearnFSM(fsm);      // Inicializa os estados com suas respectivas funções.
+		fsm.LS = SL_1;          // Estado inicial da FSM.
+		fsm.action[fsm.LS]();
+	}
+	
+	while(1) {
+	}
+
+	return 0;
 }
