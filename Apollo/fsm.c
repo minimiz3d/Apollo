@@ -4,6 +4,8 @@
  * This file defines a finite state machine for the tuner
  */
 
+#include "fsm.h"
+
 /* Inicialização das FSMs */
 void initTuneFSM(tfsm fsm) {
     fsm.action[ST_1] = st1;
