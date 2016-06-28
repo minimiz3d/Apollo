@@ -3,6 +3,10 @@
 
 #include "tuner.h"
 
+/* Variáveis utilizadas */
+extern uint8_t mode;
+extern uint8_t done;
+
 /* Todos estados utilizados */
 typedef enum {
 	S0, S1, S2, S3, S4, S5, S6, S7, S8
@@ -16,6 +20,8 @@ typedef struct FSM {
 	States state;
 	Action action[15];
 } fsm;
+
+extern volatile fsm sm;
 
 /* Inicialização da FSMs */
 void initFSM(fsm sm, uint8_t mode);

@@ -10,7 +10,7 @@
 /* Variáveis utilizadas */
 uint8_t mode;
 uint8_t done;
-fsm sm;
+volatile fsm sm;
 
 /* Inicialização da FSM */
 void initFSM(fsm sm, uint8_t mode) {
