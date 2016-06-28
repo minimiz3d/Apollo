@@ -2,36 +2,35 @@
 #include "fsm.h"
 #include "guitarTuner.h"
 
+/* Vari�veis globais */
+uint8_t mode = 5;
+uint8_t done = 1;
+
 int main() {
 	STRING string[6];           // 6 cordas para afinar.
+	fsm sm;						// Máquina de estados.
 
-	while(1) {
-		if (PORTA0) { // readPORTA0
-			mode = 1;
-		} else if (PORTA1) {
-			mode = 0; // readPORTA1
-		} else {
-			// uint8_t mode = selectMode();        // Selecionar modo: afina��o ou aprendizado.
-			fsmInit(mode);						// Inicialização da FSM.
-			fsm.state = S0;
-			fsm.action[fsm.state]();			// Define o próximo estado a ser executado (função do estado S0).
+	/* Simular leitura de porta */
+	DDRD = 0x00; PORTD = 0x01;
+	DDRB = 0x00; PORTB = 0x00;
+
+	while(1) {		// Aguarda selecionar modo.
+		while (!PORTD || !PORTB);						// Aguarda acionamento do switch.
+
+		if (PORTD)  // Afina��o.
+			mode = 0;
+		else		// PORTB ativa.
+			mode = 1; // Aprendizado.
+
+		while (!done) {
+			initFSM(sm, mode);							// Inicialização da FSM.
+			sm.state = S0;								// Estado inicial.
+
+			for (int i = 0; i < 8; i++)
+				sm.action[sm.state](string);			// Define o próximo estado a ser executado (função do estado S0).
 		}
+
 	}
 
 	return 0;
 }
-
-
-// if (!mode) {                // Afina��o.
-// 	tfsm fsm;
-// 	initTuneFSM(fsm);       // Inicializa os estados com suas respectivas fun��es.
-// 	fsm.TS = ST_1;          // Estado inicial da FSM.
-// 	fsm.action[fsm.TS]();   // Inicia afina��o.
-// }
-//
-// else {                      // Aprendizado.
-// 	lfsm fsm;               // Inicia aprendizado.
-// 	initLearnFSM(fsm);      // Inicializa os estados com suas respectivas fun��es.
-// 	fsm.LS = SL_1;          // Estado inicial da FSM.
-// 	fsm.action[fsm.LS]();
-// }
