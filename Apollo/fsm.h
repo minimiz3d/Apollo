@@ -1,52 +1,44 @@
 #ifndef FSM_H_
 #define FSM_H_
 
-/* Tuning states*/
-typedef enum {
-    ST_1, ST_2, ST_3, ST_4, ST_5, ST_6
-} tuneStates;
+#include "tuner.h"
 
-/* Learning states */
+/* Todos estados utilizados */
 typedef enum {
-    SL_1, SL_2, SL_3, SL_4, SL_5, SL_6
-} learnStates;
+	S0, S1, S2, S3, S4, S5, S6, S7, S8
+} States;
 
 /* Ponteiro de função para um determinado estado */
-typedef void (*Action)();
+typedef void (*Action)(STRING *string);
 
 /* Dados e ponteiros de funções */
-typedef struct TuningFSM {
-    learnStates LS;
-    Action action[8];
-} lfsm;
+typedef struct FSM {
+	States state;
+	Action action[15];
+} fsm;
 
-typedef struct LearningFSM {
-    tuneStates TS;
-    Action action[8];
-} tfsm;
+/* Inicialização da FSMs */
+void initFSM(fsm sm, uint8_t mode);
 
-/* Inicialização das FSMs */
-void initTuneFSM(tfsm fsm);
-void initLearnFSM(lfsm fsm);
+/* Estados iniciais */
+void s0(STRING *string);
+void s1(STRING *string);
+void s2(STRING *string);
 
-/* Funções de estados de afinação */
-void st1();
-void st2();
-void st3();
-void st4();
-void st5();
-void st6();
-void st7();
-void st8();
+/* Tuning */
+void t_s3(STRING *string);
+void t_s4(STRING *string);
+void t_s5(STRING *string);
+void t_s6(STRING *string);
+void t_s7(STRING *string);
+void t_s8(STRING *string);
 
-/* Funções de estados de aprendizado */
-void stL1();
-void stL2();
-void stL3();
-void stL4();
-void stL5();
-void stL6();
-void stL7();
-void stL8();
+/* Learning */
+void l_s3(STRING *string);
+void l_s4(STRING *string);
+void l_s5(STRING *string);
+void l_s6(STRING *string);
+void l_s7(STRING *string);
+void l_s8(STRING *string);
 
 #endif
