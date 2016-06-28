@@ -2,12 +2,14 @@
 #include <avr/io.h>
 
 /* Definir modo de operação: afinação ou aprendizado */
-void selectMode() {
-    mode = readPORTB();
+uint8_t selectMode() {
+    uint8_t mode = readPORTB();
+    
+	return mode;
 }
 uint8_t readPORTB() {
     DDRD = 0x00;    // Porta D - entrada.
-    mode = PORTD;   // Leitura.
+    uint8_t mode = PORTD;   // Leitura.
 
     return mode;
 }
@@ -16,7 +18,7 @@ uint8_t readPORTB() {
 void actMotor() {}
 
 /* Função genérica de afinamento */
-void tuneString() {
+void tuneString(STRING string, uint8_t i) {
     currentFrequency = detectFrequency(); // Atualizar essa variável com a frequência desafinada da corda em questão.
 
     while (currentFrequency != string[i].frequency) {
