@@ -12,7 +12,7 @@ typedef enum {
 } learnStates;
 
 /* Ponteiro de função para um determinado estado */
-typedef void (*Action)(); 
+typedef void (*Action)();
 
 /* Dados e ponteiros de funções */
 typedef struct TuningFSM {
@@ -25,8 +25,8 @@ typedef struct LearningFSM {
 } tfsm;
 
 /* Inicialização das FSMs */
-void initTuneFSM();
-void initLearnFSM();
+void initTuneFSM(tfsm fsm);
+void initLearnFSM(lfsm fsm);
 
 /* Funções de estados de afinação */
 void st1();
