@@ -5,93 +5,131 @@
  */
 
 #include "fsm.h"
+#include "tuner.h"
 
-/* Inicialização das FSMs */
-void initTuneFSM(tfsm fsm) {
-    fsm.action[ST_1] = st1;
-    fsm.action[ST_2] = st2;
-    fsm.action[ST_3] = st3;
-    fsm.action[ST_4] = st4;
-    fsm.action[ST_5] = st5;
-    fsm.action[ST_6] = st6;
-    fsm.action[ST_7] = st7;
-    fsm.action[ST_8] = st8;
+/* Variáveis utilizadas */
+uint8_t mode;
+uint8_t done;
+fsm sm;
+
+/* Inicialização da FSM */
+void initFSM(fsm sm, uint8_t mode) {
+    /* Estados inicias */
+    sm.action[S0] = s0;
+    sm.action[S1] = s1;
+    sm.action[S2] = s2;
+
+    if (!mode) {    // Afinação
+        sm.action[S3] = t_s3;
+        sm.action[S4] = t_s4;
+        sm.action[S5] = t_s5;
+        sm.action[S6] = t_s6;
+        sm.action[S7] = t_s7;
+        sm.action[S8] = t_s8;
+    }
+
+    else {          // Aprendizado
+        sm.action[S3] = l_s3;
+        sm.action[S4] = l_s4;
+        sm.action[S5] = l_s5;
+        sm.action[S6] = l_s6;
+        sm.action[S7] = l_s7;
+        sm.action[S8] = l_s8;
+    }
 }
-void initLearnFSM(lfsm fsm) {
-    fsm.action[SL_1] = sl1;
-    fsm.action[SL_2] = sl2;
-    fsm.action[SL_3] = sl3;
-    fsm.action[SL_4] = sl4;
-    fsm.action[SL_5] = sl5;
-    fsm.action[SL_6] = sl6;
-    fsm.action[SL_7] = sl7;
-    fsm.action[SL_8] = sl8;
+
+/* Seleciona modo: 0 - afinação e 1 - aprendizado. */
+void s0(STRING *string) {
+    if (!mode)  // Tuning
+        sm.state = S1;
+    else        // Learning
+        sm.state = S2;
+}
+
+/* Estado inicial de afinação */
+void s1(STRING *string) {
+	// SIMULADO
+	uint8_t tuning = 2;
+
+	selectTuning(tuning); // Define afinação (frequências desejadas).
+	defineStrings(string);		// Inicializa o objeto strings com os nomes e frequï¿½ncias de cada corda.
+    sm.state = S3;   // Avança na FSM.
+}
+
+/* Estado inicial de aprendizado */
+void s2(STRING *string) {
+    // VERIFICAR O QUE ESSE ESTADO FAZ.
+    sm.state = S3;  // Avança na FSM.
 }
 
 /* Funções de estados de afinação */
-void st1() {
-    tuneString();
-    fsm.TS = ST_2;  // Avança na FSM.
+void t_s3(STRING *string) {
+    tuneString(string, 0);
+    sm.state = S4;  // Avança na FSM.
 }
-void st2() {
-    tuneString();
-    fsm.TS = ST_3;  // Avança na FSM.
+void t_s4(STRING *string) {
+    tuneString(string, 1);
+    sm.state = S5; // Avança na FSM.
 }
-void st3() {
-    tuneString();
-    fsm.TS = ST_4;  // Avança na FSM.
+void t_s5(STRING *string) {
+    tuneString(string, 2);
+    sm.state = S6;  // Avança na FSM.
 }
-void st4() {
-    tuneString();
-    fsm.TS = ST_5;  // Avança na FSM.
+void t_s6(STRING *string) {
+    tuneString(string, 3);
+    sm.state = S7;  // Avança na FSM.
 }
-void st5() {
-    tuneString();
-    fsm.TS = ST_6;  // Avança na FSM.
+void t_s7(STRING *string) {
+    tuneString(string, 4);
+    sm.state = S8;
 }
-void st6() {
-    tuneString();
-    fsm.TS = ST_7;  // Avança na FSM.
-}
-void st7() {
-    tuneString();
-    fsm.TS = ST_8;  // Avança na FSM.
-}
-void st8() {
-    tuneString();
-    fsm.TS = S0;  // Avança na FSM.
+void t_s8(STRING *string) {
+    tuneString(string, 5);
+    done = 1;
+    sm.state = S0;  // Avança na FSM.
 }
 
 /* Funções de estados de aprendizado */
-void sl1() {
-    string[i].tunedFrequency = detectFrequency();
-    fsm.LS = SL_2;  // Avança na FSM.
+void l_s3(STRING *string) {
+    float frequency = detectFrequency();
+    uint8_t stringNum = 0;
+
+    saveFrequency(frequency, string, stringNum);
+    sm.state = S4;  // Avança na FSM.
 }
-void sl2() {
-    string[i].tunedFrequency = detectFrequency();
-    fsm.LS = SL_3;  // Avança na FSM.
+void l_s4(STRING *string) {
+    float frequency = detectFrequency();
+    uint8_t stringNum = 1;
+
+    saveFrequency(frequency, string, stringNum);
+    sm.state = S5;  // Avança na FSM.
 }
-void sl3() {
-    string[i].tunedFrequency = detectFrequency();
-    fsm.LS = SL_4;  // Avança na FSM.
+void l_s5(STRING *string) {
+    float frequency = detectFrequency();
+    uint8_t stringNum = 2;
+
+    saveFrequency(frequency, string, stringNum);
+    sm.state = S6;  // Avança na FSM.
 }
-void sl4() {
-    string[i].tunedFrequency = detectFrequency();
-    fsm.LS = SL_5;  // Avança na FSM.
+void l_s6(STRING *string) {
+    float frequency = detectFrequency();
+    uint8_t stringNum = 3;
+
+    saveFrequency(frequency, string, stringNum);
+    sm.state = S7;  // Avança na FSM.
 }
-void sl5() {
-    string[i].tunedFrequency = detectFrequency();
-    fsm.LS = SL_6;  // Avança na FSM.
+void l_s7(STRING *string) {
+    float frequency = detectFrequency();
+    uint8_t stringNum = 4;
+
+    saveFrequency(frequency, string, stringNum);
+    sm.state = S8;  // Avança na FSM.
 }
-void sl6() {
-    string[i].tunedFrequency = detectFrequency();
-    fsm.LS = SL_7;  // Avança na FSM.
-}
-void sl7() {
-    string[i].tunedFrequency = detectFrequency();
-    fsm.LS = SL_8;  // Avança na FSM.
-}
-void sl8() {
-    string[i].tunedFrequency = detectFrequency();
-    fsm.LS = S0;  // Avança na FSM.
+void l_s8(STRING *string) {
+    float frequency = detectFrequency();
+    uint8_t stringNum = 5;
+
+    saveFrequency(frequency, string, stringNum);
+    done = 1;
+    sm.state = S0;  // Avança na FSM.
 }
