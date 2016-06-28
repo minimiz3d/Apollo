@@ -1,5 +1,5 @@
-#ifndef STATE_FUNCTIONS
-#define STATE_FUNCTIONS
+#ifndef TUNER_H_
+#define TUNER_H_
 
 /* Frequências padrão de afinação */
 float frequencyTable[6] = {
@@ -41,5 +41,7 @@ void tuneString(STRING string, uint8_t i);
 
 /* Inicialização do objeto String com suas respectivas frequências padrão de afinação */
 void defineStrings();
+
+uint8_t selectMode();
 
 #endif

@@ -1,4 +1,4 @@
-#include "guitarTuner.h"
+#include "tuner.h"
 #include <avr/io.h>
 
 /* Definir modo de operação: afinação ou aprendizado */

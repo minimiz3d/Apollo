@@ -1,6 +1,6 @@
 #include <avr/io.h>
 #include "fsm.h"
-#include "guitarTuner.h"
+#include "tuner.h"
 
 int main() {
 	STRING string[6];           // 6 cordas para afinar.

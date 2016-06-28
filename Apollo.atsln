@@ -5,6 +5,16 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Apollo", "Apollo\Apollo.cproj", "{DCE6C7E3-EE26-4D79-826B-08594B9AD897}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5680728D-7982-400A-9EC6-AC2998D1F7E6}"
+	ProjectSection(SolutionItems) = preProject
+		Apollo\adc.c = Apollo\adc.c
+		Apollo\adc.h = Apollo\adc.h
+		Apollo\fsm.c = Apollo\fsm.c
+		Apollo\fsm.h = Apollo\fsm.h
+		Apollo\tuner.c = Apollo\tuner.c
+		Apollo\tuner.h = Apollo\tuner.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR

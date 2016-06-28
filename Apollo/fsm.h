@@ -19,6 +19,7 @@ typedef struct TuningFSM {
     learnStates LS;
     Action action[8];
 } lfsm;
+
 typedef struct LearningFSM {
     tuneStates TS;
     Action action[8];
