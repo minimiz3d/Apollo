@@ -1,6 +1,6 @@
 #include <avr/io.h>
 #include "fsm.h"
-#include "guitarTuner.h"
+#include "tuner.h"
 
 /* Vari�veis globais */
 uint8_t mode = 5;
