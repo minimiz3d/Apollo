@@ -52,14 +52,14 @@ char *stringNames[3][6] = {
 };
 
 /* Variáveis necessárias */
-bool stringInTune;
+uint8_t stringInTune = 0;
 uint8_t tuning;
 
 /* Acionamento do motor */
 void actMotor() {}
 
 /* Função genérica de afinamento */
-void tuneString(STRING *string, uint8_t i) {
+void tuneString(uint8_t i) {
     float currentFrequency = detectFrequency(); // Atualizar essa variável com a frequência desafinada da corda em questão.
 
     while (currentFrequency != string[i].tunedFrequency) {
@@ -67,11 +67,11 @@ void tuneString(STRING *string, uint8_t i) {
         // Dentro da função actMotor a gente vai atualizando a "currentFrequency".
     }
 
-    stringInTune = true;    // Avança na FSM.
+    stringInTune = 1;    // Avança na FSM.
 }
 
 /* Inicialização do objeto String com suas respectivas frequências padrão de afinação */
-void defineStrings(STRING *string) {
+void defineStrings() {
     for (int i = 0; i < 6; i++) {
         string[i].stringName = stringNames[tuning][i];
         string[i].tunedFrequency = frequencyTable[tuning][i];
@@ -91,6 +91,6 @@ float detectFrequency() {
 }
 
 /* Aprende nova afinação */
-void saveFrequency(float frequency, STRING *string, uint8_t stringNum) {
+void saveFrequency(float frequency, uint8_t stringNum) {
       string[stringNum].tunedFrequency = frequency;
 }
