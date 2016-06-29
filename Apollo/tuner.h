@@ -10,6 +10,8 @@ typedef struct String {
 	float tunedFrequency;
 } STRING;
 
+extern STRING string[6];
+
 /* Leitura da frequência */
 float detectFrequency();
 

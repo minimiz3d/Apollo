@@ -11,6 +11,7 @@
 uint8_t mode;
 uint8_t done;
 volatile fsm sm;
+STRING string[6];
 
 /* Inicialização da FSM */
 void initFSM(fsm sm, uint8_t mode) {
@@ -39,93 +40,94 @@ void initFSM(fsm sm, uint8_t mode) {
 }
 
 /* Seleciona modo: 0 - afinação e 1 - aprendizado. */
-void s0(STRING *string) {
-    if (!mode)  // Tuning
+void s0() {
+    defineStrings(string);		// Inicializa o objeto strings com os nomes e frequï¿½ncias de cada corda.
+
+	if (!mode)  // Tuning
         sm.state = S1;
     else        // Learning
         sm.state = S2;
 }
 
 /* Estado inicial de afinação */
-void s1(STRING *string) {
+void s1() {
 	// SIMULADO
 	uint8_t tuning = 2;
 
 	selectTuning(tuning); // Define afinação (frequências desejadas).
-	defineStrings(string);		// Inicializa o objeto strings com os nomes e frequï¿½ncias de cada corda.
     sm.state = S3;   // Avança na FSM.
 }
 
 /* Estado inicial de aprendizado */
-void s2(STRING *string) {
+void s2() {
     // VERIFICAR O QUE ESSE ESTADO FAZ.
     sm.state = S3;  // Avança na FSM.
 }
 
 /* Funções de estados de afinação */
-void t_s3(STRING *string) {
+void t_s3() {
     tuneString(string, 0);
     sm.state = S4;  // Avança na FSM.
 }
-void t_s4(STRING *string) {
+void t_s4() {
     tuneString(string, 1);
     sm.state = S5; // Avança na FSM.
 }
-void t_s5(STRING *string) {
+void t_s5() {
     tuneString(string, 2);
     sm.state = S6;  // Avança na FSM.
 }
-void t_s6(STRING *string) {
+void t_s6() {
     tuneString(string, 3);
     sm.state = S7;  // Avança na FSM.
 }
-void t_s7(STRING *string) {
+void t_s7() {
     tuneString(string, 4);
     sm.state = S8;
 }
-void t_s8(STRING *string) {
+void t_s8() {
     tuneString(string, 5);
     done = 1;
     sm.state = S0;  // Avança na FSM.
 }
 
 /* Funções de estados de aprendizado */
-void l_s3(STRING *string) {
+void l_s3() {
     float frequency = detectFrequency();
     uint8_t stringNum = 0;
 
     saveFrequency(frequency, string, stringNum);
     sm.state = S4;  // Avança na FSM.
 }
-void l_s4(STRING *string) {
+void l_s4() {
     float frequency = detectFrequency();
     uint8_t stringNum = 1;
 
     saveFrequency(frequency, string, stringNum);
     sm.state = S5;  // Avança na FSM.
 }
-void l_s5(STRING *string) {
+void l_s5() {
     float frequency = detectFrequency();
     uint8_t stringNum = 2;
 
     saveFrequency(frequency, string, stringNum);
     sm.state = S6;  // Avança na FSM.
 }
-void l_s6(STRING *string) {
+void l_s6() {
     float frequency = detectFrequency();
     uint8_t stringNum = 3;
 
     saveFrequency(frequency, string, stringNum);
     sm.state = S7;  // Avança na FSM.
 }
-void l_s7(STRING *string) {
+void l_s7() {
     float frequency = detectFrequency();
     uint8_t stringNum = 4;
 
     saveFrequency(frequency, string, stringNum);
     sm.state = S8;  // Avança na FSM.
 }
-void l_s8(STRING *string) {
+void l_s8() {
     float frequency = detectFrequency();
     uint8_t stringNum = 5;
 
