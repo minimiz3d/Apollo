@@ -2,11 +2,11 @@
 #define TUNER_H_
 
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include "adc.h"
 
 /* Atributos de cada corda */
 typedef struct String {
-	char *stringName;/* Opcional */
 	float tunedFrequency;
 } STRING;
 

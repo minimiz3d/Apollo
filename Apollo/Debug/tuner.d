@@ -1,4 +1,4 @@
-fsm.d fsm.o: .././fsm.c .././fsm.h .././tuner.h \
+tuner.d tuner.o: .././tuner.c .././tuner.h \
  d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -12,8 +12,6 @@ fsm.d fsm.o: .././fsm.c .././fsm.h .././tuner.h \
  d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
  d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
  .././adc.h
-
-.././fsm.h:
 
 .././tuner.h:
 

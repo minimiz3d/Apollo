@@ -10,8 +10,9 @@ main.d main.o: .././main.c \
  d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- .././fsm.h .././tuner.h .././adc.h \
- d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h
+ .././fsm.h .././tuner.h \
+ d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
+ .././adc.h
 
 d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -39,6 +40,6 @@ d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\
 
 .././tuner.h:
 
-.././adc.h:
-
 d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
+
+.././adc.h:
