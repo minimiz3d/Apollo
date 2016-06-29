@@ -1,6 +1,3 @@
-#include "tuner.h"
-#include <avr/io.h>
-
 /* Frequências padrão de afinação */
 const float frequencyTable[3][6] = {
 	{	329.63,		// E4
@@ -25,32 +22,6 @@ const float frequencyTable[3][6] = {
         20.6    }
 };
 
-/* Opcional */
-char *stringNames[3][6] = {
-	{	"E4",
-		"B3",
-		"G3",
-		"D3",
-		"A2",
-		"E2"	},
-	{
-		"x1",
-		"x2",
-		"x3",
-		"x4",
-		"x5",
-		"x6"
-	},
-	{
-		"y1",
-		"y2",
-		"y3",
-		"y4",
-		"y5",
-		"y6"
-	}
-};
-
 /* Variáveis necessárias */
 uint8_t stringInTune = 0;
 uint8_t tuning;
@@ -60,22 +31,20 @@ void actMotor() {}
 
 /* Função genérica de afinamento */
 void tuneString(uint8_t i) {
-    float currentFrequency = detectFrequency(); // Atualizar essa variável com a frequência desafinada da corda em questão.
+    float currentFrequency = 0; // Atualizar essa variável com a frequência desafinada da corda em questão.
 
-    while (currentFrequency != string[i].tunedFrequency) {
-        actMotor(); // Ainda não sei o quanto é pra girar e tal
-        // Dentro da função actMotor a gente vai atualizando a "currentFrequency".
-    }
+	do {
+		currentFrequency = detectFrequency();
+		actMotor();
+	} while ( currentFrequency >= (string[i].tunedFrequency)*0.9 || currentFrequency <= (string[i].tunedFrequency)*1.1 );
 
     stringInTune = 1;    // Avança na FSM.
 }
 
 /* Inicialização do objeto String com suas respectivas frequências padrão de afinação */
 void defineStrings() {
-    for (int i = 0; i < 6; i++) {
-        string[i].stringName = stringNames[tuning][i];
+    for (int i = 0; i < 6; i++)
         string[i].tunedFrequency = frequencyTable[tuning][i];
-    }
 }
 
 /* Define afinação */
@@ -85,9 +54,16 @@ void selectTuning(uint8_t tuning) {
 }
 
 float detectFrequency() {
-    float frequency = 81.2; // (......)
-	return frequency;
-	// waiting...
+	float frequency = 0;
+
+	ADCconfig();
+	
+	checkClipping();  
+ 
+	if (checkMaxAmp > ampThreshold){
+		frequency = 38462/float(period);//calculate frequency timer rate/period
+		return frequency;
+	}
 }
 
 /* Aprende nova afinação */

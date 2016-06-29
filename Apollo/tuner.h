@@ -1,7 +1,8 @@
-#ifndef STATE_FUNCTIONS
-#define STATE_FUNCTIONS
+#ifndef TUNER_H_
+#define TUNER_H_
 
 #include <avr/io.h>
+#include "adc.h"
 
 /* Atributos de cada corda */
 typedef struct String {
