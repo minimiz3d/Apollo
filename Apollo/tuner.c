@@ -1,32 +1,5 @@
 #include "tuner.h"
 
-//clipping indicator variables
-uint8_t clipping = 0;
-
-//data storage variables
-uint8_t newData = 0;
-uint8_t prevData = 0;
-unsigned int time = 0;//keeps time and sends vales to store in timer[] occasionally
-int timer[10];//storage for timing of events
-int slope[10];//storage for slope of events
-unsigned int totalTimer;//used to calculate period
-unsigned int period;//storage for period of wave
-uint8_t index = 0;//current storage index
-float frequency;//storage for frequency calculations
-int maxSlope = 0;//used to calculate max slope as trigger point
-int newSlope;//storage for incoming slope data
-
-//variables for decided whether you have a match
-uint8_t noMatch = 0;//counts how many non-matches you've received to reset variables if it's been too long
-uint8_t slopeTol = 3;//slope tolerance- adjust this if you need
-int timerTol = 10;//timer tolerance- adjust this if you need
-
-//variables for amp detection
-unsigned int ampTimer = 0;
-uint8_t maxAmp = 0;
-uint8_t checkMaxAmp;
-uint8_t ampThreshold = 30;//raise if you have a very noisy signal
-
 /* Frequências padrão de afinação */
 const float frequencyTable[3][6] = {
 	{	329.63,		// E4
@@ -86,9 +59,9 @@ float detectFrequency() {
 	float frequency = 0;
 
 	ADCconfig();
-	
-	checkClipping();  
- 
+
+	checkClipping();
+
 	if (checkMaxAmp > ampThreshold){
 		frequency = 38462/(float)period;//calculate frequency timer rate/period
 		return frequency;
@@ -162,13 +135,13 @@ ISR(ADC_vect) {
 			}
 		}
 	}
-	
+
 	if (newData == 0 || newData == 1023){//if clipping
 		clipping = 1;//currently clipping
 	}
-	
+
 	time++;//increment timer at rate of 38.5kHz
-	
+
 	ampTimer++;//increment amplitude timer
 	if (abs(127-ADCH)>maxAmp){
 		maxAmp = abs(127-ADCH);
@@ -178,5 +151,5 @@ ISR(ADC_vect) {
 		checkMaxAmp = maxAmp;
 		maxAmp = 0;
 	}
-	
+
 }
