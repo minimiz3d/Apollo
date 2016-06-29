@@ -22,11 +22,7 @@ int main() {
 			mode = 1; // Aprendizado.
 
 		while (!done) {
-			initFSM(sm, mode);							// Inicialização da FSM.
-			sm.state = S0;								// Estado inicial.
-
-			for (int i = 0; i < 8; i++)
-				sm.action[sm.state]();			// Define o próximo estado a ser executado (função do estado S0).
+			initFSM();							// Inicialização da FSM.
 		}
 
 	}

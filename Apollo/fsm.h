@@ -24,7 +24,7 @@ typedef struct FSM {
 extern volatile fsm sm;
 
 /* Inicialização da FSMs */
-void initFSM(fsm sm, uint8_t mode);
+void initFSM();
 
 /* Estados iniciais */
 void s0();

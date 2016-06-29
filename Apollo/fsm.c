@@ -14,7 +14,9 @@ volatile fsm sm;
 STRING string[6];
 
 /* Inicialização da FSM */
-void initFSM(fsm sm, uint8_t mode) {
+void initFSM() {
+	sm.state = S0;								// Estado inicial.
+
     /* Estados inicias */
     sm.action[S0] = s0;
     sm.action[S1] = s1;
@@ -37,6 +39,8 @@ void initFSM(fsm sm, uint8_t mode) {
         sm.action[S7] = l_s7;
         sm.action[S8] = l_s8;
     }
+
+	sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 
 /* Seleciona modo: 0 - afinação e 1 - aprendizado. */
@@ -47,6 +51,8 @@ void s0() {
         sm.state = S1;
     else        // Learning
         sm.state = S2;
+
+	sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 
 /* Estado inicial de afinação */
@@ -56,39 +62,47 @@ void s1() {
 
 	selectTuning(tuning); // Define afinação (frequências desejadas).
     sm.state = S3;   // Avança na FSM.
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 
 /* Estado inicial de aprendizado */
 void s2() {
     // VERIFICAR O QUE ESSE ESTADO FAZ.
     sm.state = S3;  // Avança na FSM.
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 
 /* Funções de estados de afinação */
 void t_s3() {
     tuneString(0);
     sm.state = S4;  // Avança na FSM.
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 void t_s4() {
     tuneString(1);
     sm.state = S5; // Avança na FSM.
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 void t_s5() {
     tuneString(2);
     sm.state = S6;  // Avança na FSM.
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 void t_s6() {
     tuneString(3);
     sm.state = S7;  // Avança na FSM.
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 void t_s7() {
     tuneString(4);
     sm.state = S8;
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 void t_s8() {
     tuneString(5);
     done = 1;
     sm.state = S0;  // Avança na FSM.
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 
 /* Funções de estados de aprendizado */
@@ -98,6 +112,7 @@ void l_s3() {
 
     saveFrequency(frequency, stringNum);
     sm.state = S4;  // Avança na FSM.
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 void l_s4() {
     float frequency = detectFrequency();
@@ -105,6 +120,7 @@ void l_s4() {
 
     saveFrequency(frequency, stringNum);
     sm.state = S5;  // Avança na FSM.
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 void l_s5() {
     float frequency = detectFrequency();
@@ -112,6 +128,7 @@ void l_s5() {
 
     saveFrequency(frequency, stringNum);
     sm.state = S6;  // Avança na FSM.
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 void l_s6() {
     float frequency = detectFrequency();
@@ -119,6 +136,7 @@ void l_s6() {
 
     saveFrequency(frequency, stringNum);
     sm.state = S7;  // Avança na FSM.
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 void l_s7() {
     float frequency = detectFrequency();
@@ -126,6 +144,7 @@ void l_s7() {
 
     saveFrequency(frequency, stringNum);
     sm.state = S8;  // Avança na FSM.
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
 void l_s8() {
     float frequency = detectFrequency();
@@ -134,4 +153,5 @@ void l_s8() {
     saveFrequency(frequency, stringNum);
     done = 1;
     sm.state = S0;  // Avança na FSM.
+    sm.action[sm.state](); // Vai para a função do próximo estado.
 }
