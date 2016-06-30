@@ -6,26 +6,45 @@
 #include "adc.h"
 #include "motor.h"
 
-/* Atributos de cada corda */
+/**
+ *	@brief Frequência desejada de afinação de cada corda.
+ */
 typedef struct String {
 	float tunedFrequency;
 } STRING;
 
+
+/**
+ *	@brief Declaração de variáveis compartilhadas.
+ *
+ *	Cada uma destas variáveis será utilizada dentro de outros códigos fonte.
+ *
+ */
 extern STRING string[6];
 
-/* Leitura da frequência */
-float detectFrequency();
+/**
+ *	@brief Detecção de frequência em tempo real.
+ */
+float detectFrequency(void);
 
-/* Função genérica de afinamento */
+/**
+ *	@brief Função genérica de afinação.
+ */
 void tuneString(uint8_t i);
 
-/* Inicialização do objeto String com suas respectivas frequências padrão de afinação */
-void defineStrings();
+/**
+ *	@brief Inicialização do objeto String com suas respectivas frequências padrão de afinação.
+ */
+void defineStrings(void);
 
-/* Seleciona a afinação */
+/**
+ *	@brief Seleciona a afinação desejada.
+ */
 void selectTuning(uint8_t tuning);
 
-/* Salva afinação (modo de aprendizado) */
+/**
+ *	@brief Salva afinação (modo de aprendizado).
+ */
 void saveFrequency(float frequency, uint8_t stringNum);
 
 #endif
