@@ -1,3 +1,9 @@
+/** @file tuner.h
+ *  @brief Protótipo de funções utilizados no modo de afinação e aprendizado.
+ *  @author Árthur Pinheiro
+ *  @author Gabriel de Jesus
+ */
+
 #ifndef TUNER_H_
 #define TUNER_H_
 
