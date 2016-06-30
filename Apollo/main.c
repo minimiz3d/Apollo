@@ -8,9 +8,7 @@ uint8_t mode = 5;
 uint8_t done = 0;
 
 int main() {
-	// STRING string[6];           // 6 cordas para afinar.
-
-	/* Simular leitura de porta */
+	/* Portas B/D como entradas */
 	DDRD |= (1 << PORTD2) | (1 << PORTD3);
 	DDRB |= (1 << PORTB3);
 
