@@ -7,9 +7,8 @@
 #include "fsm.h"
 #include "tuner.h"
 
+
 /* Variáveis utilizadas */
-uint8_t mode;
-uint8_t done;
 volatile fsm sm;
 STRING string[6];
 
