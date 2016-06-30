@@ -30,31 +30,34 @@ uint8_t ampThreshold = 30;//raise if you have a very noisy signal
 
 /* Frequências padrão de afinação */
 const float frequencyTable[3][6] = {
-	{	329.63,		// E4
-		246.94,		// B3
-		196.00,		// G3
-		146.83,		// D3
-		110.00,		// A2
-		82.41	},  // E2
+		/* DROP D TUNING */
+	{	329.63,
+		246.94,
+		196.00,
+		146.83,
+		110.00,
+		82.41	},
 
-    {   10.1,
-        10.2,
-        10.3,
-        10.4,
-        10.5,
-        10.6    },
+		/* DROP C TUNING */
+    {   293.66,
+        220.00,
+        174.61,
+        130.81,
+        98.00,
+        64.41    },
 
-	{   20.1,
-        20.2,
-        20.3,
-        20.4,
-        20.5,
-        20.6    }
+		/* OPEN G TUNING */
+	{   293.66,
+        246.94,
+        196.00,
+        146.83,
+        98.00,
+        73.42    }
 };
 
 /* Variáveis necessárias */
 uint8_t stringInTune = 0;
-uint8_t tuning;
+uint8_t tuning = 0;
 
 /* Função genérica de afinamento */
 void tuneString(uint8_t i) {
@@ -77,7 +80,6 @@ void defineStrings() {
 
 /* Define afinação */
 void selectTuning(uint8_t tuning) {
-    // waiting...
 	tuning = tuning; // Variável que indexará a frequencyTable e também stringNames.
 }
 
@@ -93,6 +95,7 @@ float detectFrequency() {
 		frequency = 38462/(float)period;//calculate frequency timer rate/period
 		return frequency;
 	}
+
 	return 0;
 }
 
