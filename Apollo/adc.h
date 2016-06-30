@@ -1,10 +1,10 @@
 /**
  * @file adc.h
- * @author ï¿½rthur Tolfo Pinheiro
- * @author Gabriel de Jesus Coelho da Silva
- * @brief Configuraï¿½ï¿½es do conversor A/D
+ * @author Árthur Pinheiro
+ * @author Gabriel de Jesus
+ * @brief Configurações do conversor A/D
  *
- * Define funï¿½ï¿½es para a configuraï¿½ï¿½o do conversor A/D.
+ * Define funções para a configuração do conversor A/D.
  * @see http://www.instructables.com/id/Arduino-Guitar-Tuner/?ALLSTEPS#step6
  */
 
@@ -15,7 +15,7 @@
 #include <avr/interrupt.h>
 
 /**
- *	@brief ConfiguraÃ§Ã£o do conversor A/D utilizado na detecÃ§Ã£o de frequÃªncia em tempo real.
+ *	@brief Configuração do conversor A/D utilizado na detecção de frequência em tempo real.
  */
 void ADCconfig(void);
 

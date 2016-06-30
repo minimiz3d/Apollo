@@ -1,7 +1,8 @@
 /** @file motor.h
- *  @brief Prot√≥tipo de fun√ß√µes utilizados para o acionamento do servo motor.
- *  @author √Årthur Pinheiro
+ *  @brief ProtÛtipo de funÁıes utilizados para o acionamento do servo motor.
+ *  @author ¡rthur Pinheiro
  *  @author Gabriel de Jesus
+ *  @see https://www.pololu.com/docs/0J57/8.a
  */
 
 #ifndef MOTOR_H_
@@ -12,23 +13,23 @@
 #include <avr/interrupt.h>
 
 /**
- *	@brief Defini√ß√£o de frequ√™ncia de opera√ß√£o do ATmega328p.
+ *	@brief DefiniÁ„o de frequÍncia de operaÁ„o do ATmega328p.
  */
 #define F_CPU 16000000
 
 /**
- *	@brief ???
+ *	@brief Ajusta configuraÁıes para o motor (i.e. timer etc)
  */
 void configMotor(void);
 
 /**
- *	@brief ???
+ *	@brief Pausa por certo perÌodo para aguardar atuaÁ„o do motor
  */
 void Wait(void);
 
 /**
- *	@brief ???
- *  @param highTimeMicroseconds Tempo m√°ximo ????? √± tenho ctz aqui.... 
+ *	@brief Atua motor servo
+ *  @param highTimeMicroseconds Tempo de atuaÁ„o do PWM no motor
  */
 void actMotor(uint16_t highTimeMicroseconds);
 

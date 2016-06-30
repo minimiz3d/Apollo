@@ -3,7 +3,7 @@
 #include "fsm.h"
 #include "tuner.h"
 
-/* Vari�veis globais */
+/* Variáveis globais */
 uint8_t mode = 5;
 uint8_t done = 0;
 
