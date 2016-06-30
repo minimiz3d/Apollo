@@ -28,7 +28,8 @@ void Wait(void);
 
 /**
  *	@brief ???
+ *  @param highTimeMicroseconds Tempo máximo ????? ñ tenho ctz aqui.... 
  */
-void actMotor(uint16_t x);
+void actMotor(uint16_t highTimeMicroseconds);
 
 #endif
