@@ -81,6 +81,7 @@ void selectTuning(uint8_t tuning) {
 	tuning = tuning; // Variável que indexará a frequencyTable e também stringNames.
 }
 
+/* Detecção de frequência usando o ADC */
 float detectFrequency() {
 	float frequency = 0;
 

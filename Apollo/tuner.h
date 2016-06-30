@@ -30,11 +30,13 @@ extern STRING string[6];
 
 /**
  *	@brief Detecção de frequência em tempo real.
+ *	@return Frequência atual da corda em questão.
  */
 float detectFrequency(void);
 
 /**
  *	@brief Função genérica de afinação.
+ *	@param i Número da corda a ser afinada.
  */
 void tuneString(uint8_t i);
 
@@ -50,6 +52,8 @@ void selectTuning(uint8_t tuning);
 
 /**
  *	@brief Salva afinação (modo de aprendizado).
+ *	@param frequency Frequência de afinação de uma determinada corda a ser aprendida.
+ *	@param stringNum Número da corda a ser afinada.
  */
 void saveFrequency(float frequency, uint8_t stringNum);
 

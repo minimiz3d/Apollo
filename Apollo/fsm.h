@@ -49,33 +49,33 @@ extern volatile fsm sm;
 /**
  *	@brief Inicializa a FSM com as funções de todos estados possíveis.
  */
-void initFSM();
+void initFSM(void);
 
 /**
  *	@brief Definição de cada função dos estados inicias.
  */
-void s0();
-void s1();
-void s2();
+void s0(void);
+void s1(void);
+void s2(void);
 
 /**
  *	@brief Definição de cada função de estado do modo de afinação.
  */
-void t_s3();
-void t_s4();
-void t_s5();
-void t_s6();
-void t_s7();
-void t_s8();
+void t_s3(void);
+void t_s4(void);
+void t_s5(void);
+void t_s6(void);
+void t_s7(void);
+void t_s8(void);
 
 /**
  *	@brief Definição de cada função de estado do modo de aprendizado.
  */
-void l_s3();
-void l_s4();
-void l_s5();
-void l_s6();
-void l_s7();
-void l_s8();
+void l_s3(void);
+void l_s4(void);
+void l_s5(void);
+void l_s6(void);
+void l_s7(void);
+void l_s8(void);
 
 #endif
