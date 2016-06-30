@@ -11,7 +11,10 @@ fsm.d fsm.o: .././fsm.c .././fsm.h .././tuner.h \
  d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
  d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
- .././adc.h
+ .././adc.h .././motor.h \
+ d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
+ d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
+ d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h
 
 .././fsm.h:
 
@@ -42,3 +45,11 @@ d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\
 d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
 
 .././adc.h:
+
+.././motor.h:
+
+d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
+
+d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
+
+d:\programas\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:

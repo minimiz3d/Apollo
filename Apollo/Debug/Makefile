@@ -40,6 +40,7 @@ C_SRCS +=  \
 ../adc.c \
 ../fsm.c \
 ../main.c \
+../motor.c \
 ../tuner.c
 
 
@@ -53,24 +54,28 @@ OBJS +=  \
 adc.o \
 fsm.o \
 main.o \
+motor.o \
 tuner.o
 
 OBJS_AS_ARGS +=  \
 adc.o \
 fsm.o \
 main.o \
+motor.o \
 tuner.o
 
 C_DEPS +=  \
 adc.d \
 fsm.d \
 main.d \
+motor.d \
 tuner.d
 
 C_DEPS_AS_ARGS +=  \
 adc.d \
 fsm.d \
 main.d \
+motor.d \
 tuner.d
 
 OUTPUT_FILE_PATH +=Apollo.elf
@@ -87,6 +92,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

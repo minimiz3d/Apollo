@@ -64,11 +64,13 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
+ .text          0x00000000        0x0 motor.o
+ .data          0x00000000        0x0 motor.o
+ .bss           0x00000000        0x0 motor.o
+ .text.Wait     0x00000000       0x1e motor.o
  .text          0x00000000        0x0 tuner.o
  .data          0x00000000        0x0 tuner.o
  .bss           0x00000000        0x0 tuner.o
- .text.actMotor
-                0x00000000        0x2 tuner.o
  .text          0x00000000        0x0 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
  .data          0x00000000        0x0 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
  .bss           0x00000000        0x0 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
@@ -182,6 +184,7 @@ LOAD D:/Programas/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega
 LOAD adc.o
 LOAD fsm.o
 LOAD main.o
+LOAD motor.o
 LOAD tuner.o
 START GROUP
 LOAD d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a
@@ -290,7 +293,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xaaa
+.text           0x00000000      0xc12
  *(.vectors)
  .vectors       0x00000000       0x68 D:/Programas/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -360,7 +363,6 @@ END GROUP
                 0x000000a2                __vector_13
                 0x000000a2                __vector_17
                 0x000000a2                __vector_19
-                0x000000a2                __vector_7
                 0x000000a2                __vector_5
                 0x000000a2                __vector_4
                 0x000000a2                __vector_9
@@ -381,119 +383,128 @@ END GROUP
                 0x000000e4                s2
  .text.s0       0x00000102       0x32 fsm.o
                 0x00000102                s0
- .text.s1       0x00000134       0x24 fsm.o
+ .text.s1       0x00000134       0x28 fsm.o
                 0x00000134                s1
- .text.t_s3     0x00000158       0x24 fsm.o
-                0x00000158                t_s3
- .text.t_s4     0x0000017c       0x24 fsm.o
-                0x0000017c                t_s4
- .text.t_s5     0x000001a0       0x24 fsm.o
-                0x000001a0                t_s5
- .text.t_s6     0x000001c4       0x24 fsm.o
-                0x000001c4                t_s6
- .text.t_s7     0x000001e8       0x24 fsm.o
-                0x000001e8                t_s7
- .text.t_s8     0x0000020c       0x28 fsm.o
-                0x0000020c                t_s8
- .text.l_s3     0x00000234       0x28 fsm.o
-                0x00000234                l_s3
- .text.l_s4     0x0000025c       0x28 fsm.o
-                0x0000025c                l_s4
- .text.l_s5     0x00000284       0x28 fsm.o
-                0x00000284                l_s5
- .text.l_s6     0x000002ac       0x28 fsm.o
-                0x000002ac                l_s6
- .text.l_s7     0x000002d4       0x28 fsm.o
-                0x000002d4                l_s7
- .text.l_s8     0x000002fc       0x2c fsm.o
-                0x000002fc                l_s8
- .text.initFSM  0x00000328       0xa4 fsm.o
-                0x00000328                initFSM
- .text.main     0x000003cc       0x24 main.o
-                0x000003cc                main
+ .text.t_s3     0x0000015c       0x24 fsm.o
+                0x0000015c                t_s3
+ .text.t_s4     0x00000180       0x24 fsm.o
+                0x00000180                t_s4
+ .text.t_s5     0x000001a4       0x24 fsm.o
+                0x000001a4                t_s5
+ .text.t_s6     0x000001c8       0x24 fsm.o
+                0x000001c8                t_s6
+ .text.t_s7     0x000001ec       0x24 fsm.o
+                0x000001ec                t_s7
+ .text.t_s8     0x00000210       0x28 fsm.o
+                0x00000210                t_s8
+ .text.l_s3     0x00000238       0x28 fsm.o
+                0x00000238                l_s3
+ .text.l_s4     0x00000260       0x28 fsm.o
+                0x00000260                l_s4
+ .text.l_s5     0x00000288       0x28 fsm.o
+                0x00000288                l_s5
+ .text.l_s6     0x000002b0       0x28 fsm.o
+                0x000002b0                l_s6
+ .text.l_s7     0x000002d8       0x28 fsm.o
+                0x000002d8                l_s7
+ .text.l_s8     0x00000300       0x2c fsm.o
+                0x00000300                l_s8
+ .text.initFSM  0x0000032c       0xa4 fsm.o
+                0x0000032c                initFSM
+ .text.main     0x000003d0       0x50 main.o
+                0x000003d0                main
+ .text.configMotor
+                0x00000420       0x24 motor.o
+                0x00000420                configMotor
+ .text.actMotor
+                0x00000444       0x1e motor.o
+                0x00000444                actMotor
+ .text.__vector_7
+                0x00000462       0xc8 motor.o
+                0x00000462                __vector_7
  .text.defineStrings
-                0x000003f0       0x42 tuner.o
-                0x000003f0                defineStrings
+                0x0000052a       0x42 tuner.o
+                0x0000052a                defineStrings
  .text.selectTuning
-                0x00000432        0x2 tuner.o
-                0x00000432                selectTuning
+                0x0000056c        0x2 tuner.o
+                0x0000056c                selectTuning
  .text.saveFrequency
-                0x00000434       0x1a tuner.o
-                0x00000434                saveFrequency
- .text.reset    0x0000044e       0x12 tuner.o
-                0x0000044e                reset
+                0x0000056e       0x1a tuner.o
+                0x0000056e                saveFrequency
+ .text.reset    0x00000588       0x12 tuner.o
+                0x00000588                reset
  .text.checkClipping
-                0x00000460        0xc tuner.o
-                0x00000460                checkClipping
+                0x0000059a        0xc tuner.o
+                0x0000059a                checkClipping
  .text.detectFrequency
-                0x0000046c       0x38 tuner.o
-                0x0000046c                detectFrequency
+                0x000005a6       0x50 tuner.o
+                0x000005a6                detectFrequency
  .text.tuneString
-                0x000004a4       0x8e tuner.o
-                0x000004a4                tuneString
+                0x000005f6       0xa4 tuner.o
+                0x000005f6                tuneString
  .text.__vector_21
-                0x00000532      0x23e tuner.o
-                0x00000532                __vector_21
+                0x0000069a      0x23e tuner.o
+                0x0000069a                __vector_21
  .text.avr-libc.fplib
-                0x00000770        0xa d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
-                0x00000770                __nesf2
-                0x00000770                __eqsf2
-                0x00000770                __cmpsf2
-                0x00000770                __ltsf2
-                0x00000770                __lesf2
+                0x000008d8        0xa d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+                0x000008d8                __nesf2
+                0x000008d8                __eqsf2
+                0x000008d8                __cmpsf2
+                0x000008d8                __ltsf2
+                0x000008d8                __lesf2
  .text.avr-libc.fplib
-                0x0000077a        0x8 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
-                0x0000077a                __divsf3
+                0x000008e2        0x8 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+                0x000008e2                __divsf3
  .text.avr-libc.fplib
-                0x00000782       0xdc d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
-                0x000007a2                __divsf3x
-                0x000007a8                __divsf3_pse
+                0x000008ea       0xdc d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                0x0000090a                __divsf3x
+                0x00000910                __divsf3_pse
  .text.avr-libc.fplib
-                0x0000085e       0x7a d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
-                0x0000085e                __floatunsisf
-                0x00000862                __floatsisf
+                0x000009c6       0x7a d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                0x000009c6                __floatunsisf
+                0x000009ca                __floatsisf
  .text.avr-libc.fplib
-                0x000008d8       0x48 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
-                0x000008d8                __fp_cmp
+                0x00000a40       0x48 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+                0x00000a40                __fp_cmp
  .text.avr-libc.fplib
-                0x00000920        0xc d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_inf.o)
-                0x00000920                __fp_inf
+                0x00000a88        0xc d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                0x00000a88                __fp_inf
  .text.avr-libc.fplib
-                0x0000092c        0x6 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_nan.o)
-                0x0000092c                __fp_nan
+                0x00000a94        0x6 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                0x00000a94                __fp_nan
  .text.avr-libc.fplib
-                0x00000932        0xe d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
-                0x00000932                __fp_pscA
+                0x00000a9a        0xe d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                0x00000a9a                __fp_pscA
  .text.avr-libc.fplib
-                0x00000940        0xe d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
-                0x00000940                __fp_pscB
+                0x00000aa8        0xe d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                0x00000aa8                __fp_pscB
  .text.avr-libc.fplib
-                0x0000094e       0x22 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_round.o)
-                0x0000094e                __fp_round
+                0x00000ab6       0x22 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                0x00000ab6                __fp_round
  .text.avr-libc.fplib
-                0x00000970       0x44 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
-                0x00000970                __fp_split3
-                0x00000980                __fp_splitA
+                0x00000ad8       0x44 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                0x00000ad8                __fp_split3
+                0x00000ae8                __fp_splitA
  .text.avr-libc.fplib
-                0x000009b4        0xe d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
-                0x000009b4                __fp_zero
-                0x000009b6                __fp_szero
+                0x00000b1c        0xe d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                0x00000b1c                __fp_zero
+                0x00000b1e                __fp_szero
  .text.avr-libc.fplib
-                0x000009c2        0xa d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
-                0x000009c2                __gesf2
-                0x000009c2                __gtsf2
+                0x00000b2a        0xa d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+                0x00000b2a                __gesf2
+                0x00000b2a                __gtsf2
  .text.avr-libc.fplib
-                0x000009cc        0x8 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
-                0x000009cc                __mulsf3
+                0x00000b34        0x8 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                0x00000b34                __mulsf3
  .text.avr-libc.fplib
-                0x000009d4       0xd2 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
-                0x000009f2                __mulsf3x
-                0x000009f8                __mulsf3_pse
-                0x00000aa6                . = ALIGN (0x2)
+                0x00000b3c       0xd2 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                0x00000b5a                __mulsf3x
+                0x00000b60                __mulsf3_pse
+                0x00000c0e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000aa6        0x0 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
-                0x00000aa6                _exit
-                0x00000aa6                exit
+ .fini9         0x00000c0e        0x0 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x00000c0e                _exit
+                0x00000c0e                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -512,85 +523,98 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000aa6        0x4 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000c0e        0x4 d:/programas/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000aaa                _etext = .
+                0x00000c12                _etext = .
 
-.data           0x00800100       0x4e load address 0x00000aaa
+.data           0x00800100       0x52 load address 0x00000c12
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
  .data.mode     0x00800100        0x1 main.o
                 0x00800100                mode
+ .data.highTimeCopy.1635
+                0x00800101        0x2 motor.o
+ .data.servoHighTime
+                0x00800103        0x2 motor.o
+                0x00800103                servoHighTime
  .data.ampThreshold
-                0x00800101        0x1 tuner.o
-                0x00800101                ampThreshold
+                0x00800105        0x1 tuner.o
+                0x00800105                ampThreshold
  .data.timerTol
-                0x00800102        0x2 tuner.o
-                0x00800102                timerTol
+                0x00800106        0x2 tuner.o
+                0x00800106                timerTol
  .data.slopeTol
-                0x00800104        0x1 tuner.o
-                0x00800104                slopeTol
+                0x00800108        0x1 tuner.o
+                0x00800108                slopeTol
  *(.rodata)
  *(.rodata*)
  .rodata.frequencyTable
-                0x00800105       0x48 tuner.o
-                0x00800105                frequencyTable
+                0x00800109       0x48 tuner.o
+                0x00800109                frequencyTable
  *(.gnu.linkonce.d*)
-                0x0080014e                . = ALIGN (0x2)
- *fill*         0x0080014d        0x1 
-                0x0080014e                _edata = .
-                0x0080014e                PROVIDE (__data_end, .)
+                0x00800152                . = ALIGN (0x2)
+ *fill*         0x00800151        0x1 
+                0x00800152                _edata = .
+                0x00800152                PROVIDE (__data_end, .)
 
-.bss            0x0080014e       0x79
-                0x0080014e                PROVIDE (__bss_start, .)
+.bss            0x00800152       0x7d
+                0x00800152                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.done      0x0080014e        0x1 main.o
-                0x0080014e                done
+ .bss.done      0x00800152        0x1 main.o
+                0x00800152                done
+ .bss.interruptCount.1636
+                0x00800153        0x1 motor.o
+ .bss.servoHigh
+                0x00800154        0x1 motor.o
+                0x00800154                servoHigh
+ .bss.servoTime
+                0x00800155        0x2 motor.o
+                0x00800155                servoTime
  .bss.stringInTune
-                0x0080014f        0x1 tuner.o
-                0x0080014f                stringInTune
- .bss.maxAmp    0x00800150        0x1 tuner.o
-                0x00800150                maxAmp
- .bss.ampTimer  0x00800151        0x2 tuner.o
-                0x00800151                ampTimer
- .bss.noMatch   0x00800153        0x1 tuner.o
-                0x00800153                noMatch
- .bss.maxSlope  0x00800154        0x2 tuner.o
-                0x00800154                maxSlope
- .bss.index     0x00800156        0x1 tuner.o
-                0x00800156                index
- .bss.time      0x00800157        0x2 tuner.o
-                0x00800157                time
- .bss.prevData  0x00800159        0x1 tuner.o
-                0x00800159                prevData
- .bss.newData   0x0080015a        0x1 tuner.o
-                0x0080015a                newData
- .bss.clipping  0x0080015b        0x1 tuner.o
-                0x0080015b                clipping
+                0x00800157        0x1 tuner.o
+                0x00800157                stringInTune
+ .bss.maxAmp    0x00800158        0x1 tuner.o
+                0x00800158                maxAmp
+ .bss.ampTimer  0x00800159        0x2 tuner.o
+                0x00800159                ampTimer
+ .bss.noMatch   0x0080015b        0x1 tuner.o
+                0x0080015b                noMatch
+ .bss.maxSlope  0x0080015c        0x2 tuner.o
+                0x0080015c                maxSlope
+ .bss.index     0x0080015e        0x1 tuner.o
+                0x0080015e                index
+ .bss.time      0x0080015f        0x2 tuner.o
+                0x0080015f                time
+ .bss.prevData  0x00800161        0x1 tuner.o
+                0x00800161                prevData
+ .bss.newData   0x00800162        0x1 tuner.o
+                0x00800162                newData
+ .bss.clipping  0x00800163        0x1 tuner.o
+                0x00800163                clipping
  *(COMMON)
- COMMON         0x0080015c       0x37 fsm.o
-                0x0080015c                string
-                0x00800174                sm
- COMMON         0x00800193       0x34 tuner.o
-                0x00800193                frequency
-                0x00800197                timer
-                0x008001ab                newSlope
-                0x008001ad                tuning
-                0x008001ae                period
-                0x008001b0                totalTimer
-                0x008001b2                checkMaxAmp
-                0x008001b3                slope
-                0x008001c7                PROVIDE (__bss_end, .)
-                0x00000aaa                __data_load_start = LOADADDR (.data)
-                0x00000af8                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800164       0x37 fsm.o
+                0x00800164                string
+                0x0080017c                sm
+ COMMON         0x0080019b       0x34 tuner.o
+                0x0080019b                frequency
+                0x0080019f                timer
+                0x008001b3                newSlope
+                0x008001b5                tuning
+                0x008001b6                period
+                0x008001b8                totalTimer
+                0x008001ba                checkMaxAmp
+                0x008001bb                slope
+                0x008001cf                PROVIDE (__bss_end, .)
+                0x00000c12                __data_load_start = LOADADDR (.data)
+                0x00000c64                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008001c7        0x0
+.noinit         0x008001cf        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008001c7                _end = .
+                0x008001cf                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -636,6 +660,7 @@ END GROUP
                                  0x31 (size before relaxing)
  .comment       0x00000030       0x31 fsm.o
  .comment       0x00000030       0x31 main.o
+ .comment       0x00000030       0x31 motor.o
  .comment       0x00000030       0x31 tuner.o
 
 .note.gnu.avr.deviceinfo
@@ -658,7 +683,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x138
+.debug_aranges  0x00000000      0x168
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x20 adc.o
@@ -667,54 +692,64 @@ END GROUP
  .debug_aranges
                 0x000000b8       0x20 main.o
  .debug_aranges
-                0x000000d8       0x60 tuner.o
+                0x000000d8       0x38 motor.o
+ .debug_aranges
+                0x00000110       0x58 tuner.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xaea
+.debug_info     0x00000000      0xd85
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000       0x83 adc.o
- .debug_info    0x00000083      0x53c fsm.o
- .debug_info    0x000005bf       0xd1 main.o
- .debug_info    0x00000690      0x45a tuner.o
+ .debug_info    0x00000083      0x54f fsm.o
+ .debug_info    0x000005d2      0x155 main.o
+ .debug_info    0x00000727      0x1c9 motor.o
+ .debug_info    0x000008f0      0x495 tuner.o
 
-.debug_abbrev   0x00000000      0x46d
+.debug_abbrev   0x00000000      0x623
  *(.debug_abbrev)
  .debug_abbrev  0x00000000       0x51 adc.o
- .debug_abbrev  0x00000051      0x1c4 fsm.o
- .debug_abbrev  0x00000215       0x83 main.o
- .debug_abbrev  0x00000298      0x1d5 tuner.o
+ .debug_abbrev  0x00000051      0x1d5 fsm.o
+ .debug_abbrev  0x00000226       0xeb main.o
+ .debug_abbrev  0x00000311      0x111 motor.o
+ .debug_abbrev  0x00000422      0x201 tuner.o
 
-.debug_line     0x00000000      0x7bc
+.debug_line     0x00000000      0xa6c
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000       0xca adc.o
- .debug_line    0x000000ca      0x351 fsm.o
- .debug_line    0x0000041b       0xbc main.o
- .debug_line    0x000004d7      0x2e5 tuner.o
+ .debug_line    0x000000ca      0x362 fsm.o
+ .debug_line    0x0000042c      0x15c main.o
+ .debug_line    0x00000588      0x1de motor.o
+ .debug_line    0x00000766      0x306 tuner.o
 
-.debug_frame    0x00000000      0x284
+.debug_frame    0x00000000      0x2f0
  *(.debug_frame)
  .debug_frame   0x00000000       0x24 adc.o
  .debug_frame   0x00000024      0x114 fsm.o
  .debug_frame   0x00000138       0x24 main.o
- .debug_frame   0x0000015c      0x128 tuner.o
+ .debug_frame   0x0000015c       0x74 motor.o
+ .debug_frame   0x000001d0      0x120 tuner.o
 
-.debug_str      0x00000000      0x338
+.debug_str      0x00000000      0x41e
  *(.debug_str)
  .debug_str     0x00000000      0x12d adc.o
                                 0x161 (size before relaxing)
- .debug_str     0x0000012d       0xff fsm.o
-                                0x252 (size before relaxing)
- .debug_str     0x0000022c       0x11 main.o
-                                0x17e (size before relaxing)
- .debug_str     0x0000023d       0xfb tuner.o
-                                0x2e3 (size before relaxing)
+ .debug_str     0x0000012d      0x10b fsm.o
+                                0x25e (size before relaxing)
+ .debug_str     0x00000238       0x5c main.o
+                                0x1c9 (size before relaxing)
+ .debug_str     0x00000294       0x98 motor.o
+                                0x1f0 (size before relaxing)
+ .debug_str     0x0000032c       0xf2 tuner.o
+                                0x2ec (size before relaxing)
 
-.debug_loc      0x00000000      0x2f8
+.debug_loc      0x00000000      0x47f
  *(.debug_loc)
  .debug_loc     0x00000000       0xb4 fsm.o
- .debug_loc     0x000000b4      0x244 tuner.o
+ .debug_loc     0x000000b4       0x48 main.o
+ .debug_loc     0x000000fc      0x109 motor.o
+ .debug_loc     0x00000205      0x27a tuner.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -734,12 +769,13 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xf8
+.debug_ranges   0x00000000      0x118
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x10 adc.o
  .debug_ranges  0x00000010       0x88 fsm.o
  .debug_ranges  0x00000098       0x10 main.o
- .debug_ranges  0x000000a8       0x50 tuner.o
+ .debug_ranges  0x000000a8       0x28 motor.o
+ .debug_ranges  0x000000d0       0x48 tuner.o
 
 .debug_macro
  *(.debug_macro)

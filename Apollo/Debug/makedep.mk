@@ -8,5 +8,7 @@ fsm.c
 
 main.c
 
+motor.c
+
 tuner.c
 
