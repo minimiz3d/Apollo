@@ -18,10 +18,8 @@ int main() {
 
 	while(1) {		// Aguarda selecionar modo.
 		while ( ((PINB & (1 << PINB4)) == 0) && ((PINB & (1 << PINB5)) == 0) ) {
-			_delay_ms(1000);	// Aguarda acionamento do                   switch.
+			_delay_ms(1000);	// Aguarda acionamento do switch.
 		}
-
-		
 
 		if ( PINB & (1 << PINB4) ) { // Afinação.
 			mode = 0;
@@ -32,7 +30,7 @@ int main() {
 		}
 
 		while (!done) {
-			initFSM();							// Inicialização da FSM.
+			initFSM();							// Inicialização e execução da FSM.
 		}
 
 	}

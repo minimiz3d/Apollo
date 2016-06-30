@@ -8,7 +8,6 @@
  * @see http://www.instructables.com/id/Arduino-Guitar-Tuner/?ALLSTEPS#step6
  */
 
-
 #ifndef ADC_H_
 #define ADC_H_
 
@@ -16,7 +15,7 @@
 #include <avr/interrupt.h>
 
 /**
- *	@brief Configuração do conversor AD utilizado na detecção de frequência em tempo real.
+ *	@brief Configuração do conversor A/D utilizado na detecção de frequência em tempo real.
  */
 void ADCconfig(void);
 
